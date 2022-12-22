@@ -6,12 +6,14 @@ case $- in
       *) return;;
 esac
 
-# PATH
-export PATH=$PATH:$HOME/bin;
-export PATH=$PATH:/usr/local/go/bin;
+# input promt
+export PS1="\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u\[\033[1;33m\] -> \[\033[0m\]";
 
-HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
 shopt -s histappend
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+# history size
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -19,18 +21,19 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-export PS1="\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u\[\033[1;33m\] -> \[\033[0m\]";
-
+# import aliases
 if [ -f ~/.bash_aliases ]; then 
   . ~/.bash_aliases
+fi
+
+# import paths
+if [ -f ~/.bash_paths ]; then 
+  . ~/.bash_paths
 fi
 
 # enable programmable completion features (you don't need to enable
