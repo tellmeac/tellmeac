@@ -10,9 +10,3 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-alias python='python3'
-
-# Complete bindings
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
